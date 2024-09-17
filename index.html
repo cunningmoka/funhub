@@ -23,11 +23,14 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       display: flex;
       align-items: center;
-      justify-content: space-between;
       position: relative;
     }
 
     .login-button {
+      position: absolute;
+      left: 20px;
+      top: 80%;
+      transform: translateY(-50%);
       background-color: #ff6506;
       border: none;
       border-radius: 5px;
@@ -235,66 +238,38 @@
       color: #ff6506;
     }
 
-    /* Mobile styles */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-      }
-
-      .login-button {
-        position: relative;
-        top: auto;
-        left: auto;
-        margin-top: 10px;
-        padding: 8px 16px;
-        font-size: 14px;
-      }
-
-      .nav-bar {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        gap: 10px;
-        font-size: 14px;
-      }
-
-      .toggle-container {
-        position: static;
-        margin-top: 10px;
-      }
-
-      footer {
-        padding: 10px;
-        font-size: 14px;
-      }
-
-      footer p {
-        margin: 5px 0;
-      }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Even smaller screens */
-    @media (max-width: 480px) {
-      header img {
-        max-height: 60px;
-      }
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+    }
 
-      .nav-links a {
-        font-size: 14px;
-      }
+    .lightbox-content img {
+      width: 100%;
+      height: auto;
+    }
 
-      .container {
-        width: 90%;
-      }
-
-      footer {
-        font-size: 12px;
-      }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -324,18 +299,107 @@
       <button id="search-button">Search</button>
     </div>
     <div class="content" id="photo-container">
-      <!-- Photos go here -->
+      <!-- First Row of Photos -->
+      <div class="photo" data-label="Funny Photo 1">
+        <img src="https://thechive.com/wp-content/uploads/2020/12/7c6df1add70cf9ff1c4a6e0b82e8dae2_width-600.jpg?attachment_cache_bust=3499746&quality=85&strip=info&w=600" alt="Funny Photo 1">
+        <p><strong>Funny Photo 1</strong></p>
+      </div>
+      <div class="photo" data-label="Funny Photo 2">
+        <img src="https://thechive.com/wp-content/uploads/2020/12/cold-beers-hot-babes-juicy-burgers-b-b-b-45-photos-7.jpg?attachment_cache_bust=3499741&quality=85&strip=info&w=600" alt="Funny Photo 2">
+        <p><strong>Funny Photo 2</strong></p>
+      </div>
+      <div class="photo" data-label="Funny Photo 3">
+        <img src="https://thechive.com/wp-content/uploads/2020/12/cold-beers-hot-babes-juicy-burgers-b-b-b-45-photos-9.jpg?attachment_cache_bust=3499743&quality=85&strip=info&w=600" alt="Funny Photo 3">
+        <p><strong>Funny Photo 3</strong></p>
+      </div>
+      <!-- Second Row of Photos -->
+      <div class="photo" data-label="Funny Photo 4">
+        <img src="https://thechive.com/wp-content/uploads/2020/12/2c9cfba93d9d1478a5c6c1b2e6cfe08e_width-600.jpg?attachment_cache_bust=3499752&quality=85&strip=info&w=600" alt="Funny Photo 4">
+        <p><strong>Funny Photo 4</strong></p>
+      </div>
+      <div class="photo" data-label="Funny Photo 5">
+        <img src="https://thechive.com/wp-content/uploads/2020/12/4f600162a5ac919eef0f4358cd8c89ee_width-600.jpg?attachment_cache_bust=3499755&quality=85&strip=info&w=600" alt="Funny Photo 5">
+        <p><strong>Funny Photo 5</strong></p>
+      </div>
+      <div class="photo" data-label="Funny Photo 6">
+        <img src="https://thechive.com/wp-content/uploads/2020/12/099f1dd5fb252589a42143af18223003_width-600.jpg?attachment_cache_bust=3499757&quality=85&strip=info&w=599" alt="Funny Photo 6">
+        <p><strong>Funny Photo 6</strong></p>
+      </div>   
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Expanded View">
     </div>
   </div>
 
   <footer>
     <p>&copy; 2024 FunHub. All rights reserved.</p>
-    <p><a href="privacypolicy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    <p><a href="privacypolicy.html">Privacy Policy</a> | <a href="termofservice.html">Terms of Service</a></p>
   </footer>
 
   <script>
-    document.getElementById('dark-mode-toggle').addEventListener('change', function() {
-      document.body.classList.toggle('dark-mode', this.checked);
+    const toggle = document.getElementById('dark-mode-toggle');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const photoContainer = document.getElementById('photo-container');
+
+    // Set initial state based on saved user preference
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkMode = localStorage.getItem('dark-mode') === 'true';
+      toggle.checked = darkMode;
+      document.body.classList.toggle('dark-mode', darkMode);
+    });
+
+    // Toggle dark mode
+    toggle.addEventListener('change', () => {
+      const isDarkMode = toggle.checked;
+      document.body.classList.toggle('dark-mode', isDarkMode);
+      localStorage.setItem('dark-mode', isDarkMode);
+    });
+
+    // Lightbox functionality
+    document.querySelectorAll('.photo').forEach(photo => {
+      photo.addEventListener('click', () => {
+        const img = photo.querySelector('img');
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Search functionality
+    searchButton.addEventListener('click', () => {
+      const query = searchInput.value.toLowerCase();
+      document.querySelectorAll('.photo').forEach(photo => {
+        const label = photo.getAttribute('data-label').toLowerCase();
+        if (label.includes(query)) {
+          photo.style.display = 'block';
+        } else {
+          photo.style.display = 'none';
+        }
+      });
+    });
+
+    // Optional: Update search on input change
+    searchInput.addEventListener('input', () => {
+      searchButton.click();
     });
   </script>
 </body>
