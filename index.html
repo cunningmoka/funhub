@@ -29,7 +29,7 @@
 
     .header-content {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
       width: 100%;
     }
@@ -37,7 +37,6 @@
     .header-content img {
       max-height: 80px;
       margin-bottom: 10px;
-      width: 100%;
       max-width: 150px;
       object-fit: contain;
     }
@@ -234,43 +233,67 @@
         padding: 10px;
       }
 
+      .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
       .header-content img {
         max-height: 60px;
         max-width: 120px;
       }
 
-      .nav-links a {
-        font-size: 12px;
-        padding: 5px;
-      }
-
-      .container {
-        margin: 20px auto;
-        padding: 15px;
-        max-width: 300px;
-      }
-
-      .container h1 {
-        font-size: 20px;
-      }
-
-      .form-group input {
-        padding: 8px;
-        font-size: 12px;
-      }
-
-      .form-group button {
-        font-size: 14px;
+      .nav-bar {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #000000;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
         padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-bar.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+        padding: 10px 0;
+        display: block;
       }
 
       .toggle-container {
         right: 10px;
+        top: 5px;
       }
 
-      footer {
-        padding: 10px;
-        font-size: 12px;
+      .hamburger {
+        font-size: 30px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        display: block;
+      }
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
       }
     }
   </style>
@@ -279,6 +302,9 @@
   <header>
     <div class="header-content">
       <img src="https://i.ibb.co/vQpjz0z/funhub-high-resolution-logo-white-transparent.png" alt="Welcome to FunHub">
+      <button class="hamburger" aria-label="Toggle navigation">
+        &#9776;
+      </button>
       <div class="nav-bar">
         <div class="nav-links">
           <a href="index.html">Home</a>
@@ -310,58 +336,28 @@
       <button type="button" id="login-button">Login</button>
     </div>
     <p><a href="#">Forgot your password?</a></p>
-    <p>Don't have an account? <a href="signin.html">Sign up here</a></p>
+    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
   </div>
 
   <footer>
-    <p>&copy; 2024 FunHub. All rights reserved.</p>
-    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <p>&copy; 2023 FunHub. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
   </footer>
 
   <script>
-    const toggle = document.getElementById('dark-mode-toggle');
+    // Dark mode toggle functionality
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
 
-    // Set initial state based on saved user preference
-    document.addEventListener('DOMContentLoaded', () => {
-      const darkMode = localStorage.getItem('dark-mode') === 'true';
-      toggle.checked = darkMode;
-      document.body.classList.toggle('dark-mode', darkMode);
+    darkModeToggle.addEventListener('change', function() {
+      body.classList.toggle('dark-mode');
     });
 
-    // Toggle dark mode
-    toggle.addEventListener('change', () => {
-      const isDarkMode = toggle.checked;
-      document.body.classList.toggle('dark-mode', isDarkMode);
-      localStorage.setItem('dark-mode', isDarkMode);
-    });
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navBar = document.querySelector('.nav-bar');
 
-    // Simple form validation
-    document.getElementById('login-button').addEventListener('click', () => {
-      let valid = true;
-
-      const username = document.getElementById('username');
-      const password = document.getElementById('password');
-      const usernameError = document.getElementById('username-error');
-      const passwordError = document.getElementById('password-error');
-
-      // Clear previous errors
-      usernameError.textContent = '';
-      passwordError.textContent = '';
-
-      if (!username.value.trim()) {
-        usernameError.textContent = 'Username is required.';
-        valid = false;
-      }
-
-      if (!password.value.trim()) {
-        passwordError.textContent = 'Password is required.';
-        valid = false;
-      }
-
-      if (valid) {
-        alert('Login successful!');
-        // Handle successful login here
-      }
+    hamburger.addEventListener('click', () => {
+      navBar.classList.toggle('show');
     });
   </script>
 </body>
