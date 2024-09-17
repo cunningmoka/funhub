@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - FunHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .header-content img {
+      max-height: 100px;
+      margin-bottom: 10px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 20px;
+    }
+
+    .toggle-container label {
+      margin-right: 10px;
+      font-size: 16px;
+      color: white;
+    }
+
+    .toggle-container input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 40px;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-container input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 60%;
+      background-color: #fff;
+      top: 1px;
+      left: 1px;
+      transition: transform 0.3s;
+    }
+
+    .toggle-container input[type="checkbox"]:checked {
+      background-color: #ff6506;
+    }
+
+    .toggle-container input[type="checkbox"]:checked::before {
+      transform: translateX(20px);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .container h1 {
+      margin-top: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+      border-color: #ff6506;
+      outline: none;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff6506;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .form-group button:hover {
+      background-color: #030100;
+    }
+
+    .form-group .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .form-group .success {
+      color: green;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .container p {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ff6506;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode header {
+      background-color: #1f1f1f;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .container {
+      background: #1e1e1e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .form-group button {
+      background-color: #ff6506;
+    }
+
+    body.dark-mode footer {
+      background-color: #1e1e1e;
+    }
+
+    body.dark-mode footer a {
+      color: #ff6506;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="https://i.ibb.co/vQpjz0z/funhub-high-resolution-logo-white-transparent.png" alt="Welcome to FunHub">
+      <div class="nav-bar">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="toggle-container">
+          <label for="dark-mode-toggle">Dark Mode:</label>
+          <input type="checkbox" id="dark-mode-toggle">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Login</h1>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <div id="username-error" class="error"></div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <div id="password-error" class="error"></div>
+    </div>
+    <div class="form-group">
+      <button type="button" id="login-button">Login</button>
+    </div>
+    <p><a href="#">Forgot your password?</a></p>
+    <p>Don't have an account? <a href="signin.html">Sign up here</a></p>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 FunHub. All rights reserved.</p>
+    <p><a href="privacypolicy.html">Privacy Policy</a> | <a href="termofservice.html">Terms of Service</a></p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('dark-mode-toggle');
+
+    // Set initial state based on saved user preference
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkMode = localStorage.getItem('dark-mode') === 'true';
+      toggle.checked = darkMode;
+      document.body.classList.toggle('dark-mode', darkMode);
+    });
+
+    // Toggle dark mode
+    toggle.addEventListener('change', () => {
+      const isDarkMode = toggle.checked;
+      document.body.classList.toggle('dark-mode', isDarkMode);
+      localStorage.setItem('dark-mode', isDarkMode);
+    });
+
+    // Simple form validation
+    document.getElementById('login-button').addEventListener('click', () => {
+      let valid = true;
+
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+      const usernameError = document.getElementById('username-error');
+      const passwordError = document.getElementById('password-error');
+
+      // Clear previous errors
+      usernameError.textContent = '';
+      passwordError.textContent = '';
+
+      if (!username.value.trim()) {
+        usernameError.textContent = 'Username is required.';
+        valid = false;
+      }
+
+      if (!password.value.trim()) {
+        passwordError.textContent = 'Password is required.';
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Login successful!');
+        // Handle successful login here
+      }
+    });
+  </script>
+</body>
+</html>

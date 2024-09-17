@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy And Policy - FunHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .header-content img {
+      max-height: 100px;
+      margin-bottom: 10px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 20px;
+    }
+
+    .toggle-container label {
+      margin-right: 10px;
+      font-size: 16px;
+      color: white;
+    }
+
+    .toggle-container input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 40px;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-container input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 60%;
+      background-color: #fff;
+      top: 1px;
+      left: 1px;
+      transition: transform 0.3s;
+    }
+
+    .toggle-container input[type="checkbox"]:checked {
+      background-color: #ff6506;
+    }
+
+    .toggle-container input[type="checkbox"]:checked::before {
+      transform: translateX(20px);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .container p {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ff6506;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode header {
+      background-color: #1f1f1f;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .container {
+      background: #1e1e1e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode footer {
+      background-color: #1e1e1e;
+    }
+
+    body.dark-mode footer a {
+      color: #ff6506;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="https://i.ibb.co/vQpjz0z/funhub-high-resolution-logo-white-transparent.png" alt="Welcome to FunHub">
+      <div class="nav-bar">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="toggle-container">
+          <label for="dark-mode-toggle">Dark Mode:</label>
+          <input type="checkbox" id="dark-mode-toggle">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <p>Privacy Policy (Because We Totally Care)</p>
+    <p>Welcome to the magical land of [YourSite], where your privacy is sort of important to us. Not in the "guard it with our lives" kind of way, but more like the "we won't sell it to a guy named Gary in a van" kind of way. So, buckle up, here’s our totally serious, not-at-all-made-up privacy policy.</p>
+    <p>1. We Collect Your Data, Obviously</p>
+    <p>When you sign up, we collect the usual stuff—email, username, maybe your favorite pizza toppings (just kidding... or are we?). But don’t worry, we won’t ask for your deepest, darkest secrets. What you do at 3 a.m. is your business—unless it involves forgetting your password. Then it’s our business.</p>
+    <p>2. Cookies? Oh Yeah, We’ve Got Cookies</p>
+    <p>No, not the delicious kind that you dunk in milk. We’re talking about the creepy little digital ones that follow you around the internet, making sure you get just the right recommendations. They're like tiny stalkers... but with good intentions. You can block them, but then your experience might get weird. Like, "why am I seeing cat videos on an adult site" kind of weird.</p>
+    <p>3. Your Data’s Safe...ish</p>
+    <p>Look, we do our best. We’ve got firewalls, encryption, and maybe a guy named Steve watching over it all (he’s great, trust us). But let’s be real—no system is foolproof. If aliens invade and steal your data, that’s on them. We can’t control extraterrestrial breaches.</p>
+    <p>4. We Don’t Sell Your Data... Usually</p>
+    <p>We’re not shady (mostly), so we don’t sell your info to random people. But if Jeff Bezos calls and offers us a trillion dollars, we might consider it. Just kidding... or are we? (No really, we don’t sell your info. Pinky promise.)</p>
+    <p>5. Third-Party Shenanigans</p>
+    <p>Sometimes, we work with other companies because, hey, we can’t do everything ourselves. These third-party folks may get some of your data, but only the boring stuff. Like analytics. They’re not out here reading your mind. (Unless they are, but we wouldn’t know. We don’t work for the CIA.)</p>
+    <p>6. You Can Opt Out, If You Must</p>
+    <p>Don’t like us tracking your every move? Fine, be that way. You can opt out of some things, like emails and certain data tracking. But if you’re expecting us to send a carrier pigeon with updates instead, that’s a bit much.</p>
+    <p>By Using This Site, You’re Saying ‘Cool, Whatever’</p>
+    <p>By using [YourSite], you’re agreeing to this delightful privacy policy, whether you read it or not (we know you didn’t). So, congratulations! You’re officially onboard with all of our totally serious rules and regulations. Welcome to the party.</p>
+    <p>If you have any questions about this riveting privacy policy, feel free to contact us... but let’s be real, you probably won’t. Enjoy the ride!</p>
+    
+  </div>
+
+  <footer>
+    <p>&copy; 2024 FunHub. All rights reserved.</p>
+    <p><a href="privacypolicy.html">Privacy Policy</a> | <a href="termofservice.html">Terms of Service</a></p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('dark-mode-toggle');
+
+    // Set initial state based on saved user preference
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkMode = localStorage.getItem('dark-mode') === 'true';
+      toggle.checked = darkMode;
+      document.body.classList.toggle('dark-mode', darkMode);
+    });
+
+    // Toggle dark mode
+    toggle.addEventListener('change', () => {
+      const isDarkMode = toggle.checked;
+      document.body.classList.toggle('dark-mode', isDarkMode);
+      localStorage.setItem('dark-mode', isDarkMode);
+    });
+  </script>
+</body>
+</html>
